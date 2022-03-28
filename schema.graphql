@@ -1,0 +1,25 @@
+type Tvl @entity {
+  id: ID! #era number
+
+  timestamp: BigInt! @index
+
+  tvl: BigInt!
+
+  price: Float
+
+  tvlUsd: Float
+}
+
+type TransactionsPerBlock @entity {
+  id: ID! #date string in format yyyyddmm
+
+  timestamp: BigInt! @index
+
+  firstBlock: Int!
+
+  lastBlock: Int
+
+  numberOfTransactions: Int!
+
+  avgNumberOfTransactions: Float
+}
