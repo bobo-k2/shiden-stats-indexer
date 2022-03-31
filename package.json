@@ -1,7 +1,7 @@
 {
-  "name": "astar-stats-indexer",
+  "name": "shiden-stats-indexer",
   "version": "0.0.1",
-  "description": "Astar statistics indexer",
+  "description": "Shiden statistics indexer",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b",
@@ -12,8 +12,8 @@
     "debug": "node --inspect-brk /usr/local/bin/subql-node -f .",
     "debug:export": "yarn build && node dist/index.js"
   },
-  "homepage": "https://github.com/subquery/astar-subql-starter",
-  "repository": "github:subquery/astar-subql-starter",
+  "homepage": "https://github.com/subquery/shiden-subql-starter",
+  "repository": "github:subquery/shiden-subql-starter",
   "files": [
     "dist",
     "schema.graphql",
