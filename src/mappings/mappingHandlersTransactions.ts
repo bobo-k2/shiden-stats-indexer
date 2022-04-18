@@ -2,11 +2,23 @@ import {SubstrateBlock} from "@subql/types";
 import { TransactionsPerBlock } from "../types";
 import { getBlockTimestampInUnix } from "./utils";
 
+const extrinsicsToCount = ['balances.transfer'];
+
 export async function handleBlock(block: SubstrateBlock): Promise<void> {
     if (block.timestamp){
       const transactions = await handleDayStartEnd(block);
+      let transactionsInBlock = 0;
 
-      transactions.numberOfTransactions += block.block.extrinsics.length;
+      block.block.extrinsics.forEach((ex, index) => {
+        const { isSigned, method: { method, section } } = ex;
+        const extrinsic = `${section}.${method}`;
+
+        if (extrinsicsToCount.includes(extrinsic) || extrinsic.startsWith('dappsStaking.')) {
+          transactionsInBlock ++;
+        }
+      });
+
+      transactions.numberOfTransactions += transactionsInBlock;
       await transactions.save();
     } else {
       logger.warn(`Block ${block.block.header.number}. Timestamp not defined`);
