@@ -2,7 +2,7 @@ import {SubstrateBlock} from "@subql/types";
 import { TransactionsPerBlock } from "../types";
 import { getBlockTimestampInUnix } from "./utils";
 
-const extrinsicsToCount = ['balances.transfer'];
+const extrinsicsToCount = ['balances.transfer', 'ethCall.call', 'evm.call'];
 
 export async function handleBlock(block: SubstrateBlock): Promise<void> {
     if (block.timestamp){
